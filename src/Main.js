@@ -10,6 +10,7 @@ class Main extends React.Component {
       city: '',
       cityName: '',
       latitude: '',
+      icon: '',
     };
   }
 
@@ -19,15 +20,22 @@ class Main extends React.Component {
 
   handleExplore = async (e) => {
     e.preventDefault();
+    console.log('submitted');
     let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.city}&format=json`;
-    const response = await axios.get(url);
-    console.log(response.data[0]);
-    this.setState({
-      displayInfo: true,
-      cityName: response.data[0].display_name,
-      latitude: response.data[0].lat,
-      longitude: response.data[0].lon,
-    });
+    try {
+      const response = await axios.get(url);
+      console.log(response.data[0]);
+      this.setState({
+        displayInfo: true,
+        cityName: response.data[0].display_name,
+        latitude: response.data[0].lat,
+        longitude: response.data[0].lon,
+        icon: response.data[0].icon,
+        error: null,
+      });
+    } catch (err) {
+      window.confirm(`${err.message} --> Unable to get geocode`);
+    }
   };
 
   render() {
@@ -51,6 +59,7 @@ class Main extends React.Component {
             <p>{this.state.cityName}</p>
             <p>Latitude: {this.state.latitude}</p>
             <p>Longitude: {this.state.longitude}</p>
+            <img src={this.state.icon} alt="icon" width="50" height="50"></img>
           </>
         )}
       </>
