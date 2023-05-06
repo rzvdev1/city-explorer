@@ -1,0 +1,29 @@
+* {
+  background-color: hsl(207, 17%, 57%);
+}
+.form {
+  display: block;
+  margin: auto;
+  background-color: #ccc;
+  width: 50%;
+  font-size: 25px;
+  padding: 25px;
+}
+.form-control {
+  margin: 25px;
+}
+
+p {
+  text-align: center;
+  padding: 5px;
+  color: azure;
+}
+img {
+  display: block;
+  margin: auto;
+}
+.form-group,
+.col-md-6,
+.form-label {
+  background-color: #ccc;
+}
