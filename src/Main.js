@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import './Main.css';
 import { Button, Form } from 'react-bootstrap';
 
 class Main extends React.Component {
@@ -41,7 +42,7 @@ class Main extends React.Component {
   render() {
     return (
       <>
-        <Form onSubmit={this.handleExplore}>
+        <Form onSubmit={this.handleExplore} className="form">
           <Form.Group className="form-group col-md-6">
             <Form.Label>Search the city</Form.Label>
             <Form.Control
@@ -59,7 +60,6 @@ class Main extends React.Component {
             <p>{this.state.cityName}</p>
             <p>Latitude: {this.state.latitude}</p>
             <p>Longitude: {this.state.longitude}</p>
-            <img src={this.state.icon} alt="icon" width="50" height="50"></img>
             <img
               src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.latitude},${this.state.longitude}&zoom=12&size=800x800&format=jpg&markers=icon:${this.state.icon}|${this.state.latitude},${this.state.longitude}`}
               alt="City"
