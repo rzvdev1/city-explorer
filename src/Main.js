@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './Main.css';
+import Weather from './Weather';
 import { Button, Form } from 'react-bootstrap';
 
 class Main extends React.Component {
@@ -12,6 +13,7 @@ class Main extends React.Component {
       cityName: '',
       latitude: '',
       icon: '',
+      weatherData: [],
     };
   }
 
@@ -34,8 +36,23 @@ class Main extends React.Component {
         icon: response.data[0].icon,
         error: null,
       });
+      this.displayWeather();
     } catch (err) {
       window.confirm(`${err.message} --> Unable to get geocode`);
+    }
+  };
+
+  displayWeather = async () => {
+    try {
+      const url = `${process.env.REACT_APP_SERVER}/weatherData?searchQuery=${this.state.city}`;
+      console.log(url);
+      const response = await axios.get(url);
+      console.log(response.data);
+      this.setState({ weatherData: response.data }, () =>
+        console.log(this.state.weatherData)
+      );
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
@@ -65,6 +82,10 @@ class Main extends React.Component {
               alt="City"
             ></img>
           </>
+        )}
+
+        {this.state.weatherData.length > 0 && (
+          <Weather weatherData={this.state.weatherData} />
         )}
       </>
     );
