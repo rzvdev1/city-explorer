@@ -3,6 +3,7 @@ import axios from 'axios';
 import './Main.css';
 import Weather from './Weather';
 import { Button, Form } from 'react-bootstrap';
+import Movies from './Movies';
 
 class Main extends React.Component {
   constructor(props) {
