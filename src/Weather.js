@@ -8,7 +8,7 @@ class Weather extends React.Component {
         <ul className="list-group font">
           {' '}
           Weather Data
-          <li class="list-group-item list-group-item-primary">
+          <li className="list-group-item list-group-item-primary">
             {this.props.weatherData.map((element) => (
               <p key={element.date}>
                 {element.date} {element.description}

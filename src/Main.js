@@ -15,6 +15,7 @@ class Main extends React.Component {
       latitude: '',
       icon: '',
       weatherData: [],
+      movieData: [],
     };
   }
 
@@ -38,6 +39,7 @@ class Main extends React.Component {
         error: null,
       });
       this.displayWeather();
+      this.displayMovies();
     } catch (err) {
       window.confirm(`${err.message} --> Unable to get geocode`);
     }
@@ -51,6 +53,19 @@ class Main extends React.Component {
       console.log(response.data);
       this.setState({ weatherData: response.data }, () =>
         console.log(this.state.weatherData)
+      );
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  displayMovies = async () => {
+    try {
+      const url = `${process.enc.MOVIE_API_KEY}/movies?movieQuery=${this.state.city}`;
+      console.log(url);
+      const response = await axios.get(url);
+      this.setState({ movieData: response.data }, () =>
+        console.log(this.state.movieData)
       );
     } catch (error) {
       console.error(error.message);
@@ -87,6 +102,10 @@ class Main extends React.Component {
 
         {this.state.weatherData.length > 0 && (
           <Weather weatherData={this.state.weatherData} />
+        )}
+
+        {this.state.movieData.length > 0 && (
+          <Movies movieData={this.state.movieData} />
         )}
       </>
     );
