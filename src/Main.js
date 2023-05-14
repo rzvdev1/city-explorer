@@ -29,7 +29,7 @@ class Main extends React.Component {
     let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.city}&format=json`;
     try {
       const response = await axios.get(url);
-      console.log(response.data[0]);
+      console.table(response.data[0]);
       this.setState({
         displayInfo: true,
         cityName: response.data[0].display_name,
@@ -52,7 +52,7 @@ class Main extends React.Component {
       const response = await axios.get(url);
       console.log(response.data);
       this.setState({ weatherData: response.data }, () =>
-        console.log(this.state.weatherData)
+        console.table(this.state.weatherData)
       );
     } catch (error) {
       console.error(error.message);
@@ -65,7 +65,7 @@ class Main extends React.Component {
       console.log(url);
       const response = await axios.get(url);
       this.setState({ movieData: response.data }, () =>
-        console.log(this.state.movieData)
+        console.table(this.state.movieData)
       );
     } catch (error) {
       console.error(error.message);
