@@ -61,7 +61,7 @@ class Main extends React.Component {
 
   displayMovies = async () => {
     try {
-      const url = `${process.enc.MOVIE_API_KEY}/movies?movieQuery=${this.state.city}`;
+      const url = `${process.env.REACT_APP_SERVER}/movies?movieQuery=${this.state.city}`;
       console.log(url);
       const response = await axios.get(url);
       this.setState({ movieData: response.data }, () =>
