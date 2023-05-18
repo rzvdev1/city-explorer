@@ -104,9 +104,14 @@ class Main extends React.Component {
           <Weather weatherData={this.state.weatherData} />
         )}
 
-        {this.state.movieData.length > 0 && (
+        {this.state.movieData.length > 0 &&
+          this.state.movieData.map((movie, index) => (
+            <Movies key={index} movie={movie} />
+          ))}
+
+        {/* {this.state.movieData.length > 0 && (
           <Movies movieData={this.state.movieData} />
-        )}
+        )} */}
       </>
     );
   }
