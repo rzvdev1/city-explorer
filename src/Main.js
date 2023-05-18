@@ -47,7 +47,7 @@ class Main extends React.Component {
 
   displayWeather = async () => {
     try {
-      const url = `${process.env.REACT_APP_SERVER}/weatherData?searchQuery=${this.state.city}`;
+      const url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}`;
       console.log(url);
       const response = await axios.get(url);
       console.log(response.data);
