@@ -61,14 +61,14 @@ class MovieDetails extends React.Component {
             <Card.Title>Card Title</Card.Title>
             <Card.Text>
               {movieData.map((element) => (
-                <p key={element.id}>
+                <li key={element.id}>
                   {element.title}
                   {element.overview}
                   {element.average_votes}
                   {element.total_votes}
                   {element.popularity}
                   {element.released_on}
-                </p>
+                </li>
               ))}
             </Card.Text>
             <Button variant="primary">Go somewhere</Button>
